@@ -2,8 +2,7 @@ package com.example.tpandroid
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class GalleryActivity : AppCompatActivity() {
@@ -20,7 +19,7 @@ class GalleryActivity : AppCompatActivity() {
 
         // Configuration du layout manager
         val recyclerview = findViewById<RecyclerView>(R.id.recyclerView)
-        recyclerview.layoutManager = LinearLayoutManager(this)
+        recyclerview.layoutManager = GridLayoutManager(this, 2)
 
         // Configuration de l'adapter
         val adapter = UnsplashAdaptater(data)
