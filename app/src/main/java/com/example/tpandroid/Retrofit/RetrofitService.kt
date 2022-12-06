@@ -1,8 +1,10 @@
-rpackage com.example.tpandroid.Retrofit
+package com.example.tpandroid.Retrofit
 
 import retrofit2.http.GET
 
 interface RetrofitService {
-    @GET("/exempleEndpoint")
-    suspend fun getData(): List<WhereIsDataInJson>
+    @GET("/photos/random")
+    suspend fun getRandomPhotos(): List<RandomPhotos>
+
+
 }
