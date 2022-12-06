@@ -1,7 +1,9 @@
 package com.example.tpandroid
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.view.inputmethod.InputBinding
 import androidx.lifecycle.ViewModelProvider
 import com.example.tpandroid.Retrofit.RetrofitApi
@@ -29,6 +31,12 @@ class MainActivity : AppCompatActivity() {
             this,
             RetrofitViewModelFactory(retrofitService)
         )[RetrofitViewModel::class.java]
+
+        val fab: View = findViewById(R.id.newButton)
+        fab.setOnClickListener {
+            val intent = Intent(applicationContext, GalleryActivity::class.java)
+            startActivity(intent)
+        }
 
 
     }
