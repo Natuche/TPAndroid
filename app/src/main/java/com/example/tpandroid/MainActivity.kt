@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
             this,
             RetrofitViewModelFactory(retrofitService)
         )[RetrofitViewModel::class.java]
+        //a
 
     }
 }
