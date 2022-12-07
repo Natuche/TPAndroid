@@ -5,19 +5,28 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.example.tpandroid.databinding.ActivityImageDetailsBinding
 
 class ImageDetails : AppCompatActivity() {
-    var isFavori:Boolean = false
     private lateinit var binding : ActivityImageDetailsBinding
+    private var model : UnsplashModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bind()
 
-        val model : UnsplashModel = intent.getParcelableExtra("unsplashModel")!!
-        binding.author.text = model.user.username
-        binding.secondary.text = model.title
+        model = intent.getParcelableExtra("unsplashModel")
+        binding.author.text = model?.user?.username ?: ""
+        binding.secondary.text = "model.user.bio"
+        binding.like.text = model?.likes.toString() + " likes"
+        binding.download.text = model?.downloads.toString() + " téléchargements"
+
+        Glide.with(applicationContext)
+            .load(model?.urls?.regular)
+            .fitCenter()
+            .into(binding.imageView)
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -30,14 +39,14 @@ class ImageDetails : AppCompatActivity() {
         super.onOptionsItemSelected(item)
         when (item.itemId) {
             R.id.favorite -> {
-                if (!isFavori) {
-                    item.setIcon(R.drawable.ic_baseline_favorite_24)
+                if (model?.liked == true) {
+                    item.setIcon(R.drawable.favorite_red)
                     Toast.makeText(this,"Favoris",Toast.LENGTH_LONG).show()
-                    isFavori = true
+                    model?.liked = true
                 }
                 else {
                     item.setIcon(R.drawable.ic_baseline_favorite_border_24)
-                    isFavori = false
+                    model?.liked = false
                 }
             }
             else -> { Toast.makeText(this,"action inconnu",Toast.LENGTH_LONG).show() }

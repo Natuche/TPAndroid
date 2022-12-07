@@ -1,5 +1,6 @@
 package com.example.tpandroid
 
+import android.app.ActivityOptions
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -30,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         val fab: View = findViewById(R.id.newButton)
         fab.setOnClickListener {
             val intent = Intent(applicationContext, GalleryActivity::class.java)
-            startActivity(intent)
+            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
         }
 
 

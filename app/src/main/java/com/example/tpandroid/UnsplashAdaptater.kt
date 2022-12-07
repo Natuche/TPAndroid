@@ -31,20 +31,12 @@ class UnsplashAdaptater (private val cellClickListener: CellClickListener) : Rec
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val unsplashCard = mList[position]
-        println("la liste : " + unsplashCard.urls.regular)
-        // sets the text to the textview from our itemHolder class
         Glide.with(holder.itemView)
             .load(unsplashCard.urls.regular)
             .into(holder.image)
 
-
-        holder.title.text = unsplashCard.title
         holder.secondary.text = unsplashCard.user.username
         holder.description.text = unsplashCard.description
-        holder.action1.text = unsplashCard.likes.toString()
-
-        if(!unsplashCard.liked )holder.action2.text = "Like"
-        else holder.action2.text = "Unlike"
 
         holder.itemView.setOnClickListener {
             cellClickListener.onCellClickListener(unsplashCard)
@@ -59,10 +51,7 @@ class UnsplashAdaptater (private val cellClickListener: CellClickListener) : Rec
     // Holds the views for adding it to image and text
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         val image: ImageView = itemView.findViewById(R.id.image)
-        val title: TextView = itemView.findViewById(R.id.title)
         val secondary: TextView = itemView.findViewById(R.id.secondary)
         val description: TextView = itemView.findViewById(R.id.description)
-        val action1: MaterialButton = itemView.findViewById(R.id.action1)
-        val action2: MaterialButton = itemView.findViewById(R.id.action2)
     }
 }

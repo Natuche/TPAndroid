@@ -4,10 +4,8 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import androidx.core.content.ContextCompat
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tpandroid.Retrofit.RetrofitApi
@@ -32,6 +30,7 @@ class GalleryActivity : AppCompatActivity(), CellClickListener{
             RetrofitViewModelFactory(retrofitService)
         )[RetrofitViewModel::class.java]
 
+        val data = ArrayList<UnsplashModel>()
 
         // Configuration du layout manager
         val recyclerview = findViewById<RecyclerView>(R.id.recyclerView)
@@ -68,6 +67,11 @@ class GalleryActivity : AppCompatActivity(), CellClickListener{
         val intent = Intent(context, ImageDetails::class.java)
         intent.putExtra("unsplashModel", model)
         return intent
+    }
+
+    private fun displayToast(text: String, duration: Int){
+        val toast = Toast.makeText(applicationContext, text, duration)
+        toast.show()
     }
 
 }
