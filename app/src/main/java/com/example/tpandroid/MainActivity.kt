@@ -16,8 +16,7 @@ import java.io.IOException
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: RetrofitViewModel
-    private lateinit var retrofitService: RetrofitService
+
 
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,11 +25,7 @@ class MainActivity : AppCompatActivity() {
         val view=binding.root
         setContentView(view)
 
-        retrofitService = RetrofitApi.getService()
-        viewModel = ViewModelProvider(
-            this,
-            RetrofitViewModelFactory(retrofitService)
-        )[RetrofitViewModel::class.java]
+
 
         val fab: View = findViewById(R.id.newButton)
         fab.setOnClickListener {
