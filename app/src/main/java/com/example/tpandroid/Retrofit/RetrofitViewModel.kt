@@ -16,7 +16,6 @@ class RetrofitViewModel (
     init{
         viewModelScope.launch {
             _data.value = retrofitService.getRandomPhotos(accessKey,10)
-            println("!0!0!0!0!0!0!0!0!0!0!0!0!0 --- CA SOIRT DE L API"+_data.value)
         }
     }
 }

@@ -12,6 +12,10 @@ import com.google.android.material.button.MaterialButton
 class UnsplashAdaptater (private val cellClickListener: CellClickListener) : RecyclerView.Adapter<UnsplashAdaptater.ViewHolder>() {
 
     var mList: List<UnsplashModel> = listOf()
+        set(value) {
+            field = value
+            this.notifyDataSetChanged()
+        }
 
     // create new views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -27,11 +31,12 @@ class UnsplashAdaptater (private val cellClickListener: CellClickListener) : Rec
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val unsplashCard = mList[position]
-
+        println("la liste : " + unsplashCard.urls.regular)
         // sets the text to the textview from our itemHolder class
         Glide.with(holder.itemView)
-            .load(unsplashCard.imageUrl)
+            .load(unsplashCard.urls.regular)
             .into(holder.image)
+
 
         holder.title.text = unsplashCard.title
         holder.secondary.text = unsplashCard.author

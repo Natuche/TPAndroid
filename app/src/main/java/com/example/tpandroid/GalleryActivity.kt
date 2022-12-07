@@ -61,6 +61,7 @@ class GalleryActivity : AppCompatActivity(), CellClickListener{
         binding = ActivityGalleryBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
     }
 
     private fun launchNextScreen(context: Context, model: UnsplashModel): Intent {
