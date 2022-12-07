@@ -16,7 +16,7 @@ class ImageDetails : AppCompatActivity() {
         bind()
 
         val model : UnsplashModel = intent.getParcelableExtra("unsplashModel")!!
-        binding.author.text = model.author
+        binding.author.text = model.user.username
         binding.secondary.text = model.title
     }
 

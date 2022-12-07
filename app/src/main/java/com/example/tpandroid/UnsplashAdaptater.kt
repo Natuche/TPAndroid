@@ -39,9 +39,9 @@ class UnsplashAdaptater (private val cellClickListener: CellClickListener) : Rec
 
 
         holder.title.text = unsplashCard.title
-        holder.secondary.text = unsplashCard.author
+        holder.secondary.text = unsplashCard.user.username
         holder.description.text = unsplashCard.description
-        holder.action1.text = unsplashCard.action1
+        holder.action1.text = unsplashCard.likes.toString()
 
         if(!unsplashCard.liked )holder.action2.text = "Like"
         else holder.action2.text = "Unlike"
