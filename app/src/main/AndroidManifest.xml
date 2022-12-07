@@ -16,6 +16,13 @@
         android:theme="@style/Theme.TPAndroid"
         tools:targetApi="31">
         <activity
+            android:name=".ImageDetails"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".GalleryActivity"
             android:exported="false">
             <meta-data

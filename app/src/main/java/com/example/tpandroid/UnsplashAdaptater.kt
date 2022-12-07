@@ -9,12 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.button.MaterialButton
 
-class UnsplashAdaptater (private val mList: List<UnsplashModel>) : RecyclerView.Adapter<UnsplashAdaptater.ViewHolder>() {
+class UnsplashAdaptater (private val mList: List<UnsplashModel>, private val cellClickListener: CellClickListener) : RecyclerView.Adapter<UnsplashAdaptater.ViewHolder>() {
 
-    // create new views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        // inflates the card_view_design view
-        // that is used to hold list item
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.image_card, parent, false)
 
@@ -38,6 +35,10 @@ class UnsplashAdaptater (private val mList: List<UnsplashModel>) : RecyclerView.
 
         if(!unsplashCard.liked )holder.action2.text = "Like"
         else holder.action2.text = "Unlike"
+
+        holder.itemView.setOnClickListener {
+            cellClickListener.onCellClickListener(unsplashCard)
+        }
     }
 
     // return the number of the items in the list
@@ -53,5 +54,6 @@ class UnsplashAdaptater (private val mList: List<UnsplashModel>) : RecyclerView.
         val description: TextView = itemView.findViewById(R.id.description)
         val action1: MaterialButton = itemView.findViewById(R.id.action1)
         val action2: MaterialButton = itemView.findViewById(R.id.action2)
+
     }
 }
