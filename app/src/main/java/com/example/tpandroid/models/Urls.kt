@@ -1,4 +1,4 @@
-package com.example.tpandroid
+package com.example.tpandroid.models
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

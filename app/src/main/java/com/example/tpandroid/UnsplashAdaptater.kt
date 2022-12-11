@@ -7,9 +7,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.google.android.material.button.MaterialButton
+import com.example.tpandroid.models.UnsplashModel
 
-class UnsplashAdaptater (private val cellClickListener: CellClickListener) : RecyclerView.Adapter<UnsplashAdaptater.ViewHolder>() {
+class UnsplashAdaptater (private val cellClickListener: CellClickListener, private  val likeClickListener: LikeClickListener) : RecyclerView.Adapter<UnsplashAdaptater.ViewHolder>() {
 
     var mList: List<UnsplashModel> = listOf()
         set(value) {
@@ -37,6 +37,12 @@ class UnsplashAdaptater (private val cellClickListener: CellClickListener) : Rec
 
         holder.secondary.text = unsplashCard.user.username
         holder.description.text = unsplashCard.description
+        if(unsplashCard.liked_by_user) holder.liked.setImageResource(R.drawable.favorite_red)
+        else holder.liked.setImageResource(R.drawable.favorite_red_outlined)
+
+        holder.liked.setOnClickListener {
+            likeClickListener.onLikeClickListener(unsplashCard)
+        }
 
         holder.itemView.setOnClickListener {
             cellClickListener.onCellClickListener(unsplashCard)
@@ -53,5 +59,6 @@ class UnsplashAdaptater (private val cellClickListener: CellClickListener) : Rec
         val image: ImageView = itemView.findViewById(R.id.image)
         val secondary: TextView = itemView.findViewById(R.id.secondary)
         val description: TextView = itemView.findViewById(R.id.description)
+        val liked: ImageView = itemView.findViewById(R.id.like)
     }
 }

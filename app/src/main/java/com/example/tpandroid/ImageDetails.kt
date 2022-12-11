@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.tpandroid.databinding.ActivityImageDetailsBinding
+import com.example.tpandroid.models.UnsplashModel
 
 class ImageDetails : AppCompatActivity() {
     private lateinit var binding : ActivityImageDetailsBinding
@@ -39,14 +40,14 @@ class ImageDetails : AppCompatActivity() {
         super.onOptionsItemSelected(item)
         when (item.itemId) {
             R.id.favorite -> {
-                if (model?.liked == true) {
+                if (model?.liked_by_user == true) {
                     item.setIcon(R.drawable.favorite_red)
                     Toast.makeText(this,"Favoris",Toast.LENGTH_LONG).show()
-                    model?.liked = true
+                    model?.liked_by_user = true
                 }
                 else {
-                    item.setIcon(R.drawable.ic_baseline_favorite_border_24)
-                    model?.liked = false
+                    item.setIcon(R.drawable.favorite_red_outlined)
+                    model?.liked_by_user = false
                 }
             }
             else -> { Toast.makeText(this,"action inconnu",Toast.LENGTH_LONG).show() }

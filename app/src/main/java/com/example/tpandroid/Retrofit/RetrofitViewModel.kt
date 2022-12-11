@@ -2,7 +2,7 @@ package com.example.tpandroid.Retrofit
 
 
 import androidx.lifecycle.*
-import com.example.tpandroid.UnsplashModel
+import com.example.tpandroid.models.UnsplashModel
 import kotlinx.coroutines.launch
 
 class RetrofitViewModel (

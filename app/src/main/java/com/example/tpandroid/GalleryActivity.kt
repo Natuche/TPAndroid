@@ -13,8 +13,13 @@ import com.example.tpandroid.Retrofit.RetrofitService
 import com.example.tpandroid.Retrofit.RetrofitViewModel
 import com.example.tpandroid.Retrofit.RetrofitViewModelFactory
 import com.example.tpandroid.databinding.ActivityGalleryBinding
+import com.example.tpandroid.models.LikedModel
+import com.example.tpandroid.models.UnsplashModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class GalleryActivity : AppCompatActivity(), CellClickListener{
+class GalleryActivity : AppCompatActivity(), CellClickListener, LikeClickListener{
     private lateinit var viewModel: RetrofitViewModel
     private lateinit var retrofitService: RetrofitService
     private lateinit var adapter: UnsplashAdaptater
@@ -37,7 +42,7 @@ class GalleryActivity : AppCompatActivity(), CellClickListener{
         recyclerview.layoutManager = GridLayoutManager(this, 2)
 
         // Configuration de l'adapter
-        adapter = UnsplashAdaptater(this)
+        adapter = UnsplashAdaptater(this, this)
         recyclerview.adapter = adapter
 
         initObserver()
@@ -46,6 +51,13 @@ class GalleryActivity : AppCompatActivity(), CellClickListener{
     override fun onCellClickListener(data: UnsplashModel) {
         val intent = launchNextScreen(applicationContext, data)
         startActivity(intent)
+    }
+
+    override fun onLikeClickListener(data: UnsplashModel) {
+        CoroutineScope(Dispatchers.IO).launch {
+            val new: LikedModel = retrofitService.postLike(data.id, "btwOfVURw2GZWxG_5CY9zJRX2Nn_Qey0FrtBEdz25zg")
+            displayToast(new.photo.liked_by_user.toString(), Toast.LENGTH_LONG)
+        }
     }
 
     private fun initObserver(){

@@ -1,11 +1,10 @@
-package com.example.tpandroid
+package com.example.tpandroid.models
 
 import android.os.Parcelable
-import androidx.annotation.Nullable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-class user (
+data class user (
     val id: String,
     val updated_at: String,
     val username: String,
@@ -13,6 +12,4 @@ class user (
     val total_likes: String,
     val total_photos: String,
     val total_collections: String
-) : Parcelable {
-
-}
+) : Parcelable
